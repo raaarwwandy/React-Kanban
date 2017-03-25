@@ -11,11 +11,12 @@ let Cards = db.Card;
 const cardsRoute = require('./routes/cards');
 
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
 
 app.use('/api/kanban/todo', cardsRoute);
 
 app.get('/', (req, res) =>{
-  res.send('fawka is working');
+  res.send('fawka is workin');
 });
 
 app.listen(8080, function(){

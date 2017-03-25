@@ -9,7 +9,8 @@ router.route('/')
   .get ( (req, res) =>{ 
     Cards.findAll()
       .then( cards =>{
-        res.json({cardsList:{cards}});
+        console.log(cards);
+        res.json(cards);
       });
   })
 
@@ -21,7 +22,7 @@ router.route('/')
       assigned_to: req.body.assigned_to 
     })
     .then((cards) =>{
-      res.send('your stuff posted');
+      res.json(cards);
     });
 })
 
