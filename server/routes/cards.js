@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 let Cards = db.Card;
-
+// let Cards = require('../models/card')
 router.route('/')
   .get ( (req, res) =>{ 
     Cards.findAll()
@@ -16,10 +16,10 @@ router.route('/')
 
   .post( (req, res) =>{
     Cards.create({
-      title : req.body.title,
-      priority: req.body.priority,
-      created_by: req.body.created_by, 
-      assigned_to: req.body.assigned_to 
+      title : req.body.Title,
+      priority: req.body.Priority,
+      created_by: req.body.Created_by, 
+      assigned_to: req.body.Assigned_by 
     })
     .then((cards) =>{
       res.json(cards);

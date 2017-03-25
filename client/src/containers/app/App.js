@@ -17,7 +17,6 @@ class App extends Component {
     var that = this;
     function reqListener(){
       var data = JSON.parse(this.responseText);
-      console.log(data);
       that.setState({
         cards: data
       })
@@ -30,17 +29,20 @@ class App extends Component {
    }
 
   createNewCard(newCard){
-    console.log(newCard)
+    console.log('NEW', newCard)
     var oReq = new XMLHttpRequest();
     oReq.open('POST', '/api/kanban/todo');
     oReq.setRequestHeader('Content-type', 'application/json')
     oReq.send(JSON.stringify(newCard))
   }
+
+
+
   render() {
     return (
       <div className="App">
         <h1>React Kanban</h1>
-        <div class="newCard">
+        <div className="newCard">
         <NewKanban createNewCard={this.createNewCard} />
         </div>
         {this.state.cards.map(({_id, title, priority, created_by, assigned_to}) => (
