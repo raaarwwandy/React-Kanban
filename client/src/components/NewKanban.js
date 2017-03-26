@@ -43,6 +43,7 @@ class NewKanban extends React.Component{
   }
 
   handleSubmit(event){
+    console.log('some event', this.props)
     event.preventDefault();
     this.props.createNewCard({
       Title:this.state.Title,
