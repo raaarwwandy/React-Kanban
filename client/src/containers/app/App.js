@@ -3,10 +3,16 @@ import Card from '../../components/Cards.js';
 import NewKanban from '../../components/NewKanban.js';
 import './App.css';
 
+import { createStore } from 'redux';
+import { connect } from 'react-redux'; 
+import cards from '../../reducers';
+import { addCard } from '../../actions';
+
+let store = createStore(cards);
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state={
       cards: []
     }
@@ -14,24 +20,27 @@ class App extends Component {
     
   }
 
+
    componentWillMount() {
     var that = this;
-    function reqListener(){
-      var data = JSON.parse(this.responseText);
-      that.setState({
-        cards: data
-      })
-    }
+      function reqListener(){
+        var data = JSON.parse(this.responseText);
+        
+      }
 
-    var oReq = new XMLHttpRequest();
-    oReq.addEventListener('load', reqListener);
-    oReq.open('GET', "/api/kanban/todo");
-    oReq.send();
+      var oReq = new XMLHttpRequest();
+      oReq.addEventListener('load', reqListener);
+      oReq.open('GET', "/api/kanban/todo");
+      oReq.send();
    }
 
   createNewCard(newCard){
-    console.log('NEW', newCard)
+    var that = this; 
+      function reqListener(){
+        var data = JSON.parse(this.responseText);
+      }
     var oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', reqListener);
     oReq.open('POST', '/api/kanban/todo');
     oReq.setRequestHeader('Content-type', 'application/json')
     oReq.send(JSON.stringify(newCard))
@@ -61,4 +70,21 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state ) =>{
+  return {
+    cards: state.cards
+  }
+};
+
+const mapDispatchToProps = (dispatch) =>{
+  // console.log(dispatch);
+  return {
+    createNewCardRedux:(title, priority, created_by, assigned_to) =>{
+      dispatch(addCard(title, priority, created_by, assigned_to));
+    }
+  }
+}
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps)(App);
