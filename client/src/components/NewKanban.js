@@ -9,6 +9,7 @@ class NewKanban extends React.Component{
     this.handleChangeStatus=this.handleChangeStatus.bind(this);
     this.handleChangeCreatedBy=this.handleChangeCreatedBy.bind(this);
     this.handleChangeAssignedTo=this.handleChangeAssignedTo.bind(this);
+    this.handleChangeStatus=this.handleChangeStatus.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this)
   }
 
@@ -42,16 +43,23 @@ class NewKanban extends React.Component{
     })
   }
 
+  hamdleChangeStatus(event){
+    this.setState({
+      Status: event.target.value
+    })
+  }
+
   handleSubmit(event){
-    console.log('some event', this.props)
     event.preventDefault();
     this.props.createNewCard({
       Title:this.state.Title,
       Priority:this.state.Priority,
       Created_by:this.state.Created_by,
-      Assigned_by:this.state.Assigned_by
+      Assigned_by:this.state.Assigned_by,
+      Status:this.state.Status
     })
   }
+
 
   render(){
     return(
@@ -60,10 +68,21 @@ class NewKanban extends React.Component{
         <div className="newTask">
         <form className="makePost" onSubmit={this.handleSubmit} >
           <input type="text" onChange={this.handleChangeTitle} 
-          placeholder="Title" name="title"/>
-          <input type="text" onChange={this.handleChangePriority} placeholder="Priority" name="priority"/>
-          <input type="text" onChange={this.handleChangeCreatedBy}placeholder="Assigned By" name="assigned_by"/>
-          <input type="text" onChange={this.handleChangeAssignedTo} placeholder="Assigned To"name="assigned_to"/>
+          placeholder="TASK" name="title"/>
+          <select onChange={this.handleChangeStatus}  name="status" >
+            <option disable selected value>select status</option>
+            <option value="QUEUE">QUEUE</option>
+            <option value="PROGRESS">PROGRESS</option>
+            <option value="DONE">DONE</option>
+          </select>
+          <select onChange={this.handleChangePriority} name="priority">
+            <option disable selected value>SELECT PRIORITY</option> 
+            <option value="LOW">LOW</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="HIGH">HIGH</option>
+          </select>
+          <input type="text" onChange={this.handleChangeCreatedBy}placeholder="Assigned BY" name="assigned_by"/>
+          <input type="text" onChange={this.handleChangeAssignedTo} placeholder="Assigned TO"name="assigned_to"/>
           <input type="submit" value='Post Task'/>
         </form>
         </div>
