@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../components/Cards.js';
-// const QueueDisplay = (props) => (
-//   <div className="QueueCards">
-//     <h1>Task: {props.title}</h1>
-//     <h3>Priority: {props.priority}</h3>
-//     <h3>Status: {props.status}</h3>
-//     <h3>Assigened By: {props.created_by}</h3>
-//     <h3>Assigned to: {props.assigned_to}</h3>
-//   </div>
 
-// );
 
   class ProgressDisplay extends Component {
     constructor(props){
@@ -18,13 +9,12 @@ import Card from '../components/Cards.js';
   
 
   render(){
-    // console.log(this.props)
     return(
-      <div className="queue">
+      <div className="progress">
         <h1>In Progress</h1>
         {this.props.cards.filter((card) => card.status ==='PROGRESS').map((cards) =>{
           return(<Card 
-            _key={cards.key}
+            id={cards.id}
             title={cards.title}
             status={cards.status}
             priority={cards.priority}

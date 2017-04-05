@@ -10,6 +10,7 @@ function cards(state = initialState, action){
     return Object.assign({}, state, {
         cards: [
           ...state.cards, {
+            id: action._id,
             title: action.title, 
             status: action.status,
             priority: action.priority, 

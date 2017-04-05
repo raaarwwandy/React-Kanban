@@ -14,11 +14,12 @@ import Card from '../components/Cards.js';
         <h1>Done</h1>
         {this.props.cards.filter((card) => card.status ==='DONE').map((cards) =>{
           return(<Card 
-            _key={cards.key}
+            id={cards.id}
             title={cards.title}
             status={cards.status}
             priority={cards.priority}
-            assigned_to={cards.assigned_to}
+            assigned_by={cards.assigned_to}
+            created_by={cards.created_by}
             />
             )
         })

@@ -81,7 +81,7 @@ class NewKanban extends React.Component{
             <option value="MEDIUM">MEDIUM</option>
             <option value="HIGH">HIGH</option>
           </select>
-          <input type="text" onChange={this.handleChangeCreatedBy}placeholder="Assigned BY" name="assigned_by"/>
+          <input type="text" onChange={this.handleChangeCreatedBy}placeholder="Assigned BY" name="created_by"/>
           <input type="text" onChange={this.handleChangeAssignedTo} placeholder="Assigned TO"name="assigned_to"/>
           <input type="submit" value='Post Task'/>
         </form>
